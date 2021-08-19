@@ -73,6 +73,17 @@ The following is our datasets which were obtained from GitHub’s TidyTuesday:
 ## Dataset source
 The data is originally obtained from “Our World in Data”. And this article "Forests and Deforestation" is retrieved from: 'https://ourworldindata.org/forests-and-deforestation' and written by Hannah Ritchie and Max Roser (2021).
 
+
+
+## Proposed Research Questions:
+
+1. How are forests distributed across the world and how much each region contributes to deforestation? 
+
+2. Who are the largest ‘importers’ and ‘exporters’ of deforestation?
+
+3. Does higher production of commodities(palm oil/soybean) result in a higher deforestation rate?
+
+
 # Analysis and findings
 
 [FILL] Should include at least one plot or numerical summary for each of your questions, that helps the reader arrive at an answer. You should also write paragraphs describing the methods, summaries and findings. 
