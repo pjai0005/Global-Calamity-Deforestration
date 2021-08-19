@@ -3,7 +3,7 @@ title: "ETC5521 Assignment 1"
 subtitle: "Deforestration"
 team: Cuscus
 author:
-  - Pian-Li
+  - Pian Li
   - Prachi Jaiswal
 date: "`r Sys.Date()`"
 output: 
