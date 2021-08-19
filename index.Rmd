@@ -70,7 +70,8 @@ The following is our datasets which were obtained from GitHub’s TidyTuesday:
 - production is a double type that shows oil production in tonnes. 
 
 
-
+## Dataset source
+The data is originally obtained from “Our World in Data”. And this article "Forests and Deforestation" is retrieved from: 'https://ourworldindata.org/forests-and-deforestation' and written by Hannah Ritchie and Max Roser (2021).
 
 # Analysis and findings
 
