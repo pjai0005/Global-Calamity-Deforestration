@@ -73,11 +73,39 @@ The following is our datasets which were obtained from GitHub’s TidyTuesday:
 ## Dataset source
 The data is originally obtained from “Our World in Data”. And this article "Forests and Deforestation" is retrieved from: 'https://ourworldindata.org/forests-and-deforestation' and written by Hannah Ritchie and Max Roser (2021).
 
+```{r, libraries, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = FALSE, message = FALSE, warning = FALSE, cache.lazy = FALSE )
+#remotes::install_github('htmlwidgets/sparkline')
+library(tidyverse)
+library(sparkline)
+library(DT)
+library(tidyverse)
+library(maps)
+library(ggplot2)
+library(ggthemes)
+library(gridExtra)
+library(broom)
+library(RColorBrewer)
+library(kableExtra)
+library(ggpubr)
+```
+
+```{r, datasets, include=FALSE}
+forest_area<- read.csv("data/forest_area.csv")
+deforestation<- read.csv("data/deforestation.csv")
+
+imported<- read.csv("data/imported-deforestation.csv")
+exported<- read.csv("data/exported-deforestation.csv")
+
+soy<- read.csv("data/soybean_use.csv")
+oil<- read.csv("data/vegetable_oil.csv")
+
+```
 
 
 ## Proposed Research Questions:
 
-1. How are forests distributed across the world and how much each region contributes to deforestation? 
+1. How are forests distributed across the world and how much each region contributes to deforestation?
 
 2. Who are the largest ‘importers’ and ‘exporters’ of deforestation?
 
@@ -86,6 +114,53 @@ The data is originally obtained from “Our World in Data”. And this article "
 
 # Analysis and findings
 
-[FILL] Should include at least one plot or numerical summary for each of your questions, that helps the reader arrive at an answer. You should also write paragraphs describing the methods, summaries and findings. 
+## How are forests distributed across the world and how much each region contributes to deforestation?
+
+```{r, fig.cap= "Forest area distibuted across the world", fig.align='center'}
+fa <- forest_area %>% group_by(entity) %>%
+  summarise (farea = mean (forest_area, na.rm = TRUE)) %>%
+  rename(region = "entity")
+
+
+world_map <- map_data("world")
+world_map <- subset(world_map, region != "Antarctica")
+
+ggplot(fa) +
+  geom_map(dat = world_map, map = world_map, aes(map_id = region),
+    fill = "white", color = "#7f7f7f", size = 0.25) +
+  
+  geom_map(map = world_map, aes(map_id = region, fill = farea), size = 0.25) +
+  scale_fill_gradient(low = "#c8e3aa", high = "#1c330c", name = "Forest Area") +
+  expand_limits(x = world_map$long, y = world_map$lat)
+```
+Through the above map, we can understand that Russia and Brazil dominate the world with larger forest areas. It also can be seen that China has the largest forest area in Asia. However, several observations are missing here for some countries, such as the United States.
+
+
+The below table shows the deforestation rate among the continents of the world. It can be clearly seen through the line graph that though South America’s deforestation rate has seen a significant decrease over the years, it still outstands the other continents with the highest amount of deforestation in hectares.
+
+```{r}
+deforestation %>% 
+  group_by(Entity) %>%
+  select(Entity, Year, Deforestation) %>%
+  filter(Entity %in% c("Africa", "Asia", "Europe", "North America", "Oceania", "South America" )) %>%
+  summarise (`Deforestation in hectars` = mean (Deforestation, na.rm = TRUE),
+              Min = min(Deforestation, na.rm = TRUE),
+              Max = max(Deforestation, na.rm = TRUE),
+             `Line graph` = spk_chr(Deforestation, type ="line"),
+             `Boxplot` = spk_chr(Deforestation, type ="box"))%>%  
+  datatable(escape = FALSE, options = c (list(pageLength = 10, digits = 2))) %>%
+  spk_add_deps()
+```
+ Interestingly, Africa doesn’t stand far behind and sees an increasing pace of deforestation and is the only country whose number soars high over the years. Even though the data set consists of some missing values for the continent, Africa still manages to share the average deforestation rate alongside South America. Intriguing, Europe’s graph exhibit some unusual increment and a sudden decrement in logging. While the rest of the continents see a fairly declined pattern over the years.
+
+
+### Who are the largest ‘importers’ and ‘exporters’ of deforestation?
+
+
+
+### Does higher production of commodities(palm oil/soybean) result in a higher deforestation rate?
+
+
+
 
 # References
