@@ -302,7 +302,7 @@ The most concentrated deforestation occurs in tropical rainforests because they 
 
 ### Soybean
 
-```{r eval=TRUE,echo=FALSE}
+```{r soyplot,eval=TRUE,echo=FALSE,fig.cap="Production and Consumption of Soybean"}
 soya <- soy %>% group_by(entity) %>%
   mutate(used = human_food + animal_feed)
 soya <- soy %>% group_by(entity) %>%
@@ -318,7 +318,7 @@ augment(soya_lm) %>%
   labs (title = "Production of Soybean vs Usage of Soybean")
 
 ```
-The above graph shows the linear relationship between consumption and the production of soybean. They are positively correlated which means the soybean production will increase when the consumption in soybean rises. We can learn that though it is linearly a good fit, it still has got slightly higher demand than production.
+The above graph \@ref(fig:soyplot) shows the linear relationship between consumption and the production of soybean. They are positively correlated which means the soybean production will increase when the consumption in soybean rises. We can learn that though it is linearly a good fit, it still has got slightly higher demand than production.
 
 
 ```{r eval=TRUE,echo=FALSE}
@@ -343,7 +343,7 @@ Soybean production has seen an enormous amount of surge over the past 50 years. 
 
 ### Vegetable Oil
 
-```{r}
+```{r oilplot1, fig.cap="Most production in crop oil"}
 oil %>% group_by(crop_oil, year) %>% 
   summarise(production = mean(production, na.rm = TRUE)) %>%
   ggplot( aes(y=reorder(crop_oil, production),x=production, fill= "peach"))+
@@ -351,7 +351,7 @@ oil %>% group_by(crop_oil, year) %>%
   theme_bw()+
   labs (title = "Most produced crop oil", y= "Crop Oils")
 ```
-According to the figure \@ref(...) above, it is obvious that the most productive crop oil is palm oil, followed by soybean oil and then rapeseed. We found it to be intriguing that how palm oil’s production outstands the rest of the vegetable oils so dominantly. 
+According to the figure \@ref(fig:oilplot1) above, it is obvious that the most productive crop oil is palm oil, followed by soybean oil and then rapeseed. We found it to be intriguing that how palm oil’s production outstands the rest of the vegetable oils so dominantly. 
 
 ```{r}
 oil %>% 
@@ -369,7 +369,7 @@ oil %>%
 ```
 
 
-```{r}
+```{r oilplot2,fig.cap = "Crop oil production from 1961 to 2013"}
 oil_lm <- lm(production ~ crop_oil, data = oil)
 
 oil %>% group_by(year, crop_oil) %>% 
@@ -385,7 +385,7 @@ oil %>% group_by(year, crop_oil) %>%
   labs (title = "Timeline of crop oil")
 
 ```
-The line graph \@ref(fig:) demonstrates the timeline of various types of crop oil production from 1961 to 2014. It seems that the production of palm oil shows a significant upward trend and outstands other crop oil’s production. 
+The line graph \@ref(fig:oilplot2) demonstrates the timeline of various types of crop oil production from 1961 to 2014. It seems that the production of palm oil shows a significant upward trend and outstands other crop oil’s production. 
 
 
 # Conclusion
