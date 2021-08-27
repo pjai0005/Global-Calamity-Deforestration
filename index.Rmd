@@ -354,6 +354,10 @@ The line graph \@ref(fig:) demonstrates the timeline of various types of crop oi
 
 
 # Conclusion
+Some densely populated forest regions are under serious catastrophic damages. For instance, from the first table, we saw how South Africa is retracing the same path as South America or maybe get even worsen over time.
+With the above analysis, we found that one of the underlying causes of logging is to produce new lands for higher-demand commodities like soy, palm oils, and beef. We know that the area being used to grow soy is still increasing, and that land has to come from somewhere.
+Lastly, the deforestation traded between countries is inevitable, it can be seen that higher demand for deforestation-related commodities in wealthier countries is the major cause of deforestation. 
+Also, due to the limitations of our chosen data, it is suggested that using a larger, more accurate, and up-to-date dataset is necessary for researchers to do the analysis. We all should be concerned about the pace of degradation of forests which has resulted in accelerated global warming, diversity loss, weakening of indigenous livelihoods and many more damages to humankind.
 
 
 # References
