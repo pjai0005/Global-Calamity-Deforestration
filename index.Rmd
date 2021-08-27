@@ -17,7 +17,8 @@ output:
 
 # Introduction and motivation
 
-[FILL] Give the bigger picture of the data, and inspire the reader to learn more about the problem by reading your analysis. 
+The world seeks a high pace of climate change and global warming concerns for many reasons. One of them is the alarming rate of deforestation that happened within a century. Though some significant companies have moved towards eco-friendly models, that does not change the reality of the majority still not opting for a cleaner and healthier environment. One of the major problems is that they trade a lot of deforestation-related commodities between some countries according to domestic market demand. 
+
 
 # Data description
 
