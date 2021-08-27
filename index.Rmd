@@ -62,6 +62,7 @@ The world seeks a high pace of climate change and global warming concerns for ma
         subtitle = "This is how Forest Area has decreased over the years.",
         x = "From 1990 to 2020", y = "Forest Area in hectars")
 ```
+
 As seen in the above graph, the area of forest has only seen a decline over the past few decades. This gave us the motivation to look deeper into one the Global crisis. Deforestation has always been a vital concern of the world's environment, and the direct response to the severity of the problem is through the change of forest land area. This report will focus on how the commodity market is related to deforestation and traded between countries to see which countries are the primary supplier and consumers of deforestation-related goods.
 
 But, there are some datasets that are outdated (i.e., annual deforestation dataset, 1990 to 2015), with several missing values in critical variables (i.e entity, code, deforestation). These limitations will make it difficult for researchers to find meaningful results.
@@ -397,7 +398,7 @@ oil %>%
   spk_add_deps()
 
 ```
-
+From the table above, we can see that the highest producers of oil are Asian countries. Precisely the South Asian countries like Indonesia and Malaysia generates more than 60% of palm oil in the world. Being one of the small geographical areas in the world, these countries still manage to produce an enormous amount of vegetable oils. 
 
 ```{r oilplot2,fig.cap = "Crop oil production from 1961 to 2013"}
 oil_lm <- lm(production ~ crop_oil, data = oil)
@@ -415,7 +416,9 @@ oil %>% group_by(year, crop_oil) %>%
   labs (title = "Timeline of crop oil")
 
 ```
-The line graph \@ref(fig:oilplot2) demonstrates the timeline of various types of crop oil production from 1961 to 2014. It seems that the production of palm oil shows a significant upward trend and outstands other crop oil’s production. 
+The line graph \@ref(fig:oilplot2)  demonstrates the timeline of various types of crop oil production from 1961 to 2014. It seems that the production of palm oil shows a significant upward trend and outstands other crop oil’s production. Since Palm oils are used in the production of almost every edible thing, there has a lot of demand than other oils. If there is higher demand then the farmers and producers will want to have more land for palm oil, leading to deforestation. 
+
+
 
 
 # Conclusion
