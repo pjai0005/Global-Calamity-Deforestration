@@ -46,12 +46,23 @@ There are some steps about what we did to wrangle the dataset into our desired f
 
 3. Lastly, we added observations for each year according to the data structure and wrote the final CSV file to the data folder.
 
+```{r, eval=FALSE}
+nam<- deforestation %>% 
+  filter(Entity %in% c("United States", "Mexico", "Canada", "Costa Rica", "Jaimaca", "Panama", "Dominican Republic", "Belize"))
+
+n90<- deforestation %>% add_row(Entity = "North America", Code = " ", Year = 1990, Deforestation = 783660)
+n00<- n90 %>% add_row(Entity = "North America", Code = " ", Year = 2000, Deforestation = 498720)
+n10<- n00 %>% add_row(Entity = "North America", Code = " ", Year = 2010, Deforestation = 295630)
+new <- n10 %>% add_row(Entity = "North America", Code = " ", Year = 2015, Deforestation = 226990)
+
+deforestation <- write.csv(new, "D:/Sem2/5521/Assignmnet1/data/deforestation.csv")
+```
 
 ## Structure of data
 
 After the data cleaning, the description of some variables included in those datasets are presented in the table \@ref(tab:structure) below:
 
-```{r structure,eval=TRUE,echo=FALSE}
+```{r structure,eval=TRUE,echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(kableExtra)
 data_structure <- tibble(Variables = c("entity"
