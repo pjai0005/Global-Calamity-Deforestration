@@ -302,6 +302,7 @@ augment(soya_lm) %>%
 
 ```
 
-The above graph shows the linear relationship between consumption and the production of soybean. We can learn that though it’s linearly a good fit, it still has got slightly higher demand than production. 
+The above graph shows the linear relationship between consumption and the production of soybean. They are positively correlated which means the soybean production will increase when the consumption in soybean rises. We can learn that though it is linearly a good fit, it still has got slightly higher demand than production. 
+
 
 # References
