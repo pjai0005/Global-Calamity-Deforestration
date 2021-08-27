@@ -253,7 +253,7 @@ kable(ex_im, caption = "Deforestation Embedded In Exported And Imported Goods") 
 
 ```
 
-
+The above table \@ref(tab:q2table) shows the major deforestation-related commodities exporter and importer and their relative percentage change of 2005 and 2013. Among all these countries, it can be seen that five exported countries and two imported countries have a significant increase of more than 100 %. Another interesting finding is that most exporters are low-income countries while most imported countries are high-income or upper-middle-income. Therefore, it is reasonable to say that the more affluent countries are more likely to contribute to deforestation in poorer countries.
 
 ## Does higher production of commodities(palm oil/soybean) result in a higher deforestation rate?
 
