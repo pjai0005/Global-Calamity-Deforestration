@@ -14,10 +14,57 @@ output:
 
 [This assignment is for ETC5521 Assignment 1 by Team `r rmarkdown::metadata$team` comprising of `r knitr::combine_words(rmarkdown::metadata$author)`.]{style="color:#006DAE;"}
 
+```{r, libraries, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = FALSE, message = FALSE, warning = FALSE, cache.lazy = FALSE )
+#remotes::install_github('htmlwidgets/sparkline')
+library(tidyverse)
+library(sparkline)
+library(DT)
+library(tidyverse)
+library(maps)
+library(ggplot2)
+library(ggthemes)
+library(gridExtra)
+library(broom)
+library(RColorBrewer)
+library(kableExtra)
+library(ggpubr)
+```
+
+
+```{r, datasets, include=FALSE}
+forest_area<- read.csv("data/forest_area.csv")
+deforestation<- read.csv("data/deforestation.csv")
+
+imported<- read.csv("data/imported-deforestation.csv")
+exported<- read.csv("data/exported-deforestation.csv")
+
+soy<- read.csv("data/soybean_use.csv")
+oil<- read.csv("data/vegetable_oil.csv")
+
+```
+
 
 # Introduction and motivation
 
 The world seeks a high pace of climate change and global warming concerns for many reasons. One of them is the alarming rate of deforestation that happened within a century. Though some significant companies have moved towards eco-friendly models, that does not change the reality of the majority still not opting for a cleaner and healthier environment. One of the major problems is that they trade a lot of deforestation-related commodities between some countries according to domestic market demand. 
+
+```{r}
+  forest_area %>% group_by(year) %>%
+  summarise (farea = mean (forest_area, na.rm = TRUE)) %>%
+  ggplot(aes( x= year, y = farea))+
+  geom_line(colour = "red", size = 1.2)+
+  geom_point(colour = "dark red", size = 2)+
+  
+  theme_bw()+
+  scale_x_continuous(breaks = seq(1990, 2020, by = 2))+
+  labs (title = "Timeline of Forest Area",
+        subtitle = "This is how Forest Area has decreased over the years.",
+        x = "From 1990 to 2020", y = "Forest Area in hectars")
+```
+As seen in the above graph, the area of forest has only seen a decline over the past few decades. This gave us the motivation to look deeper into one the Global crisis. Deforestation has always been a vital concern of the world's environment, and the direct response to the severity of the problem is through the change of forest land area. This report will focus on how the commodity market is related to deforestation and traded between countries to see which countries are the primary supplier and consumers of deforestation-related goods.
+
+But, there are some datasets that are outdated (i.e., annual deforestation dataset, 1990 to 2015), with several missing values in critical variables (i.e entity, code, deforestation). These limitations will make it difficult for researchers to find meaningful results.
 
 
 # Data description
@@ -121,35 +168,6 @@ kable(data_structure,caption = "Data description for variables included in data"
   kable_styling(bootstrap_options = c("striped", "hover")) 
 ```
 
-
-```{r, libraries, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, cache = FALSE, message = FALSE, warning = FALSE, cache.lazy = FALSE )
-#remotes::install_github('htmlwidgets/sparkline')
-library(tidyverse)
-library(sparkline)
-library(DT)
-library(tidyverse)
-library(maps)
-library(ggplot2)
-library(ggthemes)
-library(gridExtra)
-library(broom)
-library(RColorBrewer)
-library(kableExtra)
-library(ggpubr)
-```
-
-```{r, datasets, include=FALSE}
-forest_area<- read.csv("data/forest_area.csv")
-deforestation<- read.csv("data/deforestation.csv")
-
-imported<- read.csv("data/imported-deforestation.csv")
-exported<- read.csv("data/exported-deforestation.csv")
-
-soy<- read.csv("data/soybean_use.csv")
-oil<- read.csv("data/vegetable_oil.csv")
-
-```
 
 
 ## Proposed Research Questions:
