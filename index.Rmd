@@ -285,4 +285,11 @@ soya %>%
 ```
 
 
+Soybean production has seen an enormous amount of surge over the past 50 years. More than 70% of soybean is used to feed animals while approx 20% and 4% of the remaining soy is used for human food and industries respectively.
+
+
+
+
+The above graph shows the linear relationship between consumption and the production of soybean. We can learn that though it’s linearly a good fit, it still has got slightly higher demand than production. 
+
 # References
