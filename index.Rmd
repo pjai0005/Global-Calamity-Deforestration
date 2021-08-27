@@ -265,6 +265,24 @@ To solve the problem, one needs to know about the root cause of the problem. Out
 
 The most concentrated deforestation occurs in tropical rainforests because they have the ability to provide considerably the most used commodities to the world. These commodities mainly consist of beef, oilseeds, soy, forestry items, and other edibles.
 
+### Soybean
+
+```{r eval=TRUE,echo=FALSE}
+soya %>% 
+  group_by(entity) %>%
+  select(entity, processed, human_food, animal_feed) %>%
+  rename(Country = entity) %>%
+  summarise (`Production in Tonnes` = round(mean(processed, na.rm = TRUE)),
+             `Human Usage in Tonnes` = round(mean(human_food, na.rm = TRUE)),
+             `Animal Usage in Tonnes` = round(mean(animal_feed, na.rm = TRUE)))%>% 
+  datatable(escape = FALSE, 
+            ,caption = htmltools::tags$caption( style = 'caption-side: top; 
+                                                text-align: center;  color:black; font-size:150% ;',
+                                                'Usage and Production of Soy'),
+            options = c (list(pageLength = 10 ))) %>%
+  spk_add_deps()
+
+```
 
 
 # References
