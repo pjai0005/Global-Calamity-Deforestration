@@ -23,57 +23,92 @@ output:
 
 ## Data source
 
-We have selected the data from the GitHub webpage (https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-06/readme.md) which talks about the drivers of deforestation over years. We have selected six datasets related to deforestation and several variables are analyzed: forest area, deforestation, imported deforestation, exported deforestation, human food, animal food, processed, crop oil and production.
-
-The following is our datasets which were obtained from GitHub’s TidyTuesday:
-
-1. Forest area: 
-- entity is a character type that shows the country name.
-- code is a character type that shows the country code.
-- year is an integer type that shows the year from 1990 to 2020.
-- forest_area is a double type that shows the per cent of global forest area.
-
-
-2. Annual deforestation: 
-- entity is a character type that shows the country name.
-- code is a character type that shows the country code.
-- year is a double type that shows the year from 1990 to 2015.
-- deforestation is a double type that shows the deforested area in hectares.
-
-
-3. Imported deforestation:
-- entity is a character type that shows the country name.
-- code is a character type that shows the country code.
-- year is a double type that shows the year from 2005 to 2013.
-- imported deforestation is a double type that shows each country’s imported deforestation, measured in hectares.
-
-
-4. Exported deforestation:
-- entity is a character type that shows the country name.
-- code is a character type that shows the country code.
-- year is a double type that shows the year from 2005 to 2013.
-- exported deforestation is a double type that shows each country’s exported deforestation, measured in hectares.
-
-
-5. Soybean use:
-- entity is a character type that shows the country name.
-- code is a character type that shows the country code.
-- year is a double type that shows the year from 1961 to 2013.
-- human food is a double type that shows soybean use for human food (tempeh, tofu, etc).
-- animal feed is a double that shows soybean used for animal food.
-- processed is a double that shows soybean processed into vegetable oil, biofuel, processed animal feed.
-
-
-6. Vegetable oil:
-- entity is a character type that shows the country name.
-- code is a character type that shows the country code.
-- year is an integer type that shows the year from 1961 to 2014.
-- crop_oil is a character type that shows crops that were used to produce vegetable oil.
-- production is a double type that shows oil production in tonnes. 
-
+We have selected the data from the GitHub webpage of TidyTuesday (https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-06/readme.md), which talks about the drivers of deforestation over the years. We have chosen six datasets related to deforestation, and several variables are analyzed: forest area, deforestation, imported deforestation, exported deforestation, human food, animal food, processed, crop oil, and production.
 
 ## Dataset source
 The data is originally obtained from “Our World in Data”. And this article "Forests and Deforestation" is retrieved from: 'https://ourworldindata.org/forests-and-deforestation' and written by Hannah Ritchie and Max Roser (2021).
+
+
+## Data Cleaning
+
+Although the data is gathered in a cleaned format, we found some minor issues with only one data set: annual-deforestation.csv. 
+
+The CSV file had 2 missing world’s continents North America and Antarctica. Since Antarctica is covered by permanent ice and snow leaving less than 1% available for colonization by plants and trees, we decided not to add the continent to the analysis. While with North America, we faced some issues like:
+
+* The data set had less than half of the countries (8/23) mentioned from the continent.
+* There were missing data of the US which is one of the major countries contributing significantly to the world’s deforestation rate.
+
+There are some steps about what we did to wrangle the dataset into our desired format. 
+
+1. We created another data frame filtered with the countries available from the continent. 
+
+2. We calculated the cumulative mean for each year the countries went through deforestation.
+
+3. Lastly, we added observations for each year according to the data structure and wrote the final CSV file to the data folder.
+
+
+## Structure of data
+
+After the data cleaning, the description of some variables included in those datasets are presented in the table \@ref(tab:structure) below:
+
+```{r structure,eval=TRUE,echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+data_structure <- tibble(Variables = c("entity"
+                                       ,"code"
+                                       ,"year(Forest area)"
+                                       ,"year(deforestation)",
+                                       "year(Imported deforestation)",
+                                       "year(exported deforestation)",
+                                       "year(Soybean use)",
+                                       "year(Vegetable oil)",
+                                       "forest_area",
+                                       "Deforestation",
+                                       "imported_deforestation",
+                                       "exported_deforestation",
+                                       "human food",
+                                       "animal feed",
+                                       "processed",
+                                       "crop_oil",
+                                       "production"),
+       Class = c("character",
+                 "character",
+                 "double",
+                 "integer",
+                 "double",
+                 "double",
+                 "double",
+                 "double",
+                 "double",
+                 "double",
+                 "double",
+                 "double",
+                 "double",
+                 "double",
+                 "double",
+                 "character",
+                 "double"),
+       Description = c("the country name",
+                       "the country code",
+                       "year from 1990 to 2020",
+                       "year from 1990 to 2015",
+                       "year from 2005 to 2013",
+                       "year from 2005 to 2013",
+                       "year from 1961 to 2013",
+                       "year from 1961 to 2014",
+                       "the global forest area measured in hectares",
+                       "the deforested area in hectares",
+                       "each country’s imported deforestation, measured in hectares",
+                       "each country’s exported deforestation, measured in hectares",
+                       "soybean use for human food (tempeh, tofu, etc)",
+                       "soybean used for animal food",
+                       " soybean processed into vegetable oil, biofuel, processed animal feed",
+                       "crops that were used to produce vegetable oil","oil production in tonnes"))
+
+kable(data_structure,caption = "Data description for variables included in data") %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) 
+```
+
 
 ```{r, libraries, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, cache = FALSE, message = FALSE, warning = FALSE, cache.lazy = FALSE )
