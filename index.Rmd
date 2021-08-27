@@ -268,6 +268,25 @@ The most concentrated deforestation occurs in tropical rainforests because they 
 ### Soybean
 
 ```{r eval=TRUE,echo=FALSE}
+soya <- soy %>% group_by(entity) %>%
+  mutate(used = human_food + animal_feed)
+soya <- soy %>% group_by(entity) %>%
+  mutate(used = human_food + animal_feed)
+
+soya_lm <- lm(used ~ processed, data= soya)
+
+augment(soya_lm) %>% 
+  ggplot(aes(x= processed, y = used))+
+  geom_point( colour= "red", alpha= .5, size = 3)+
+  theme_bw()+
+  geom_smooth(method = "lm")+
+  labs (title = "Production of Soybean vs Usage of Soybean")
+
+```
+The above graph shows the linear relationship between consumption and the production of soybean. They are positively correlated which means the soybean production will increase when the consumption in soybean rises. We can learn that though it is linearly a good fit, it still has got slightly higher demand than production.
+
+
+```{r eval=TRUE,echo=FALSE}
 soya %>% 
   group_by(entity) %>%
   select(entity, processed, human_food, animal_feed) %>%
@@ -287,22 +306,54 @@ soya %>%
 
 Soybean production has seen an enormous amount of surge over the past 50 years. More than 70% of soybean is used to feed animals while approx 20% and 4% of the remaining soy is used for human food and industries respectively.
 
-```{r eval=TRUE,echo=FALSE}
-soya <- soy %>% group_by(entity) %>%
-  mutate(used = human_food + animal_feed)
+### Vegetable Oil
 
-soya_lm <- lm(used ~ processed, data= soya)
-
-augment(soya_lm) %>% 
-  ggplot(aes(x= processed, y = used))+
-  geom_point( colour= "red", alpha= .5, size = 3)+
+```{r}
+oil %>% group_by(crop_oil, year) %>% 
+  summarise(production = mean(production, na.rm = TRUE)) %>%
+  ggplot( aes(y=reorder(crop_oil, production),x=production, fill= "peach"))+
+  geom_bar(stat="identity", position="dodge", width = 0.6)+
   theme_bw()+
-  geom_smooth(method = "lm")+
-  labs (title = "Production of Soybean vs Usage of Soybean")
+  labs (title = "Most produced crop oil", y= "Crop Oils")
+```
+According to the figure \@ref(...) above, it is obvious that the most productive crop oil is palm oil, followed by soybean oil and then rapeseed. We found it to be intriguing that how palm oil’s production outstands the rest of the vegetable oils so dominantly. 
+
+```{r}
+oil %>% 
+  group_by(entity) %>%
+  select(entity, production) %>%
+  rename(Country = entity) %>%
+  summarise (`Production in Tonnes` = round(mean(production, na.rm = TRUE)))%>% 
+  datatable(escape = FALSE, 
+            ,caption = htmltools::tags$caption( style = 'caption-side: top; 
+                                                text-align: center;  color:black; font-size:150% ;',
+                                                'Mean Production of Vegetable Oil'),
+            options = c (list(pageLength = 10 ))) %>%
+  spk_add_deps()
 
 ```
 
-The above graph shows the linear relationship between consumption and the production of soybean. They are positively correlated which means the soybean production will increase when the consumption in soybean rises. We can learn that though it is linearly a good fit, it still has got slightly higher demand than production. 
+
+```{r}
+oil_lm <- lm(production ~ crop_oil, data = oil)
+
+oil %>% group_by(year, crop_oil) %>% 
+  summarise(production = mean(production, na.rm = TRUE),
+            year= mean(year)) %>%
+  ggplot(aes(x= year, y= production, colour = crop_oil)) +
+  geom_line(size = 1.2) +
+  theme_grey() +
+  scale_x_continuous(breaks = seq(1960, 2020, by = 10))+
+  scale_color_manual(values = c("#5793FF", "#007F94", "#C22B26", "#8BE836",
+                                "#2AA876", "#33691E","#FF0076" , "#FF6517", "#B6696A",
+                                "#57315A", "#C100FF", "#FFB632", "#49adc1")) + # because there was no 13 color palette.
+  labs (title = "Timeline of crop oil")
+
+```
+The line graph \@ref(fig:) demonstrates the timeline of various types of crop oil production from 1961 to 2014. It seems that the production of palm oil shows a significant upward trend and outstands other crop oil’s production. 
+
+
+# Conclusion
 
 
 # References
