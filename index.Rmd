@@ -287,8 +287,20 @@ soya %>%
 
 Soybean production has seen an enormous amount of surge over the past 50 years. More than 70% of soybean is used to feed animals while approx 20% and 4% of the remaining soy is used for human food and industries respectively.
 
+```{r eval=TRUE,echo=FALSE}
+soya <- soy %>% group_by(entity) %>%
+  mutate(used = human_food + animal_feed)
 
+soya_lm <- lm(used ~ processed, data= soya)
 
+augment(soya_lm) %>% 
+  ggplot(aes(x= processed, y = used))+
+  geom_point( colour= "red", alpha= .5, size = 3)+
+  theme_bw()+
+  geom_smooth(method = "lm")+
+  labs (title = "Production of Soybean vs Usage of Soybean")
+
+```
 
 The above graph shows the linear relationship between consumption and the production of soybean. We can learn that though it’s linearly a good fit, it still has got slightly higher demand than production. 
 
