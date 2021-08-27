@@ -73,11 +73,55 @@ The following is our datasets which were obtained from GitHub’s TidyTuesday:
 ## Dataset source
 The data is originally obtained from “Our World in Data”. And this article "Forests and Deforestation" is retrieved from: 'https://ourworldindata.org/forests-and-deforestation' and written by Hannah Ritchie and Max Roser (2021).
 
+```{r, libraries, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = FALSE, message = FALSE, warning = FALSE, cache.lazy = FALSE )
+#remotes::install_github('htmlwidgets/sparkline')
+library(tidyverse)
+library(sparkline)
+library(DT)
+library(tidyverse)
+library(maps)
+library(ggplot2)
+library(ggthemes)
+library(gridExtra)
+library(broom)
+library(RColorBrewer)
+library(kableExtra)
+library(ggpubr)
+```
+
+```{r, datasets, include=FALSE}
+forest_area<- read.csv("data/forest_area.csv")
+deforestation<- read.csv("data/deforestation.csv")
+
+imported<- read.csv("data/imported-deforestation.csv")
+exported<- read.csv("data/exported-deforestation.csv")
+
+soy<- read.csv("data/soybean_use.csv")
+oil<- read.csv("data/vegetable_oil.csv")
+
+```
 
 
 ## Proposed Research Questions:
 
-1. How are forests distributed across the world and how much each region contributes to deforestation? 
+1. How are forests distributed across the world and how much each region contributes to deforestation?
+
+```{r}
+
+deforestation %>% 
+  group_by(Entity) %>%
+  select(Entity, Year, Deforestation) %>%
+  filter(Entity %in% c("Africa", "Asia", "Europe", "North America", "Oceania", "South America" )) %>%
+  summarise (`Deforestation in hectars` = mean (Deforestation, na.rm = TRUE),
+              Min = min(Deforestation, na.rm = TRUE),
+              Max = max(Deforestation, na.rm = TRUE),
+             `Line graph` = spk_chr(Deforestation, type ="line"),
+             `Boxplot` = spk_chr(Deforestation, type ="box"))%>%  
+  datatable(escape = FALSE, options = c (list(pageLength = 10, digits = 2))) %>%
+  spk_add_deps()
+
+```
 
 2. Who are the largest ‘importers’ and ‘exporters’ of deforestation?
 
