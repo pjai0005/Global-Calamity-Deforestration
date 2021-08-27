@@ -361,3 +361,25 @@ Also, due to the limitations of our chosen data, it is suggested that using a la
 
 
 # References
+
+R packages used:
+
+* tidyverse: Wickham et al. (2019^[@tidyverse])
+* ggplots2: Wickham (2016^[@ggplot2])
+* kableExtra: Zhu (2019^[@kableExtra])
+* ggpubr: Kassambara (2020^[@ggpubr])
+* sparkline: Ramnath, Kent, Gareth (2016^[@sparkline])
+* DT: Yihui, Joe, Xianying (2021^[@DT])
+* maps: Richard, Allan, Ray, Thomas, Alex (2018^[@maps])
+* ggthemes: Jeffrey (2021^[@ggthemes])
+* gridExtra: Baptiste (2017^[@gridExtra])
+* broom: David, Alex, Simon (2021^[@broom])
+* RColorBrewer: Erich (2014^[@RColorBrewer])
+
+Website used:
+
+* GitHub. 2021. tidytuesday/readme.md at master · rfordatascience/tidytuesday. [online] Available at: <https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-06/readme.md> [Accessed 25 August 2021].
+* Ritchie, H. and Roser, M., 2021. Forests and Deforestation. [online] Our World in Data. Available at: <https://ourworldindata.org/forests-and-deforestation> [Accessed 25 August 2021].
+
+
+
