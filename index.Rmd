@@ -257,6 +257,13 @@ The above table \@ref(tab:q2table) shows the major deforestation-related commodi
 
 ## Does higher production of commodities(palm oil/soybean) result in a higher deforestation rate?
 
+To solve the problem, one needs to know about the root cause of the problem. Out of the three general classifications of the forest: 
+
+* Temperate forests (found across eastern North America and Eurasia). 
+* Tropical forests (common in areas near the equator, such as Southeast Asia, sub-Saharan Africa, and Central America). 
+* and the third Boreal forests, (found across Siberia, Scandinavia, Alaska and Canada).
+
+The most concentrated deforestation occurs in tropical rainforests because they have the ability to provide considerably the most used commodities to the world. These commodities mainly consist of beef, oilseeds, soy, forestry items, and other edibles.
 
 
 
