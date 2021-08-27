@@ -220,6 +220,40 @@ The figure \@ref(fig:q2plot) above provides a general view of which country is t
 It is clear that China is the largest importer of deforestation over this period. Also, Indonesia passed Brazil in near 2008 and has become the largest deforestation exporter.
 
 
+```{r q2table, eval=TRUE, echo = FALSE, message=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(ggpubr)
+
+
+
+ex <- exported_deforestation %>%
+  filter(`Year` %in% c(2005,2013)) %>%
+  pivot_wider(names_from = Year, values_from = `exported_deforestation`) %>%
+  rename(`Exported Country` = `Entity`) %>%
+  mutate(`Relative change (%)` = ((`2013` - `2005`)/`2005`) * 100) %>%
+  arrange(desc(`2013`)) %>%
+  head(10)
+
+
+im <- imported_deforestation %>%
+  filter(`Year` %in% c(2005,2013)) %>%
+  pivot_wider(names_from = Year, values_from = `imported_deforestation`) %>%
+  rename(`Imported Country` = `Entity`) %>%
+  mutate(`Relative change (%)` = ((`2013` - `2005`)/`2005`) * 100) %>%
+  arrange(desc(`2013`)) %>%
+  head(10)
+
+ex_im = cbind(ex,im)
+
+kable(ex_im, caption = "Deforestation Embedded In Exported And Imported Goods") %>%
+  kable_paper("hover", full_width = F)
+
+
+
+```
+
+
 
 ## Does higher production of commodities(palm oil/soybean) result in a higher deforestation rate?
 
