@@ -1,6 +1,5 @@
 ---
-title: "ETC5521 Assignment 1"
-subtitle: "Deforestration"
+title: "Global Calamity: Deforestation"
 team: Cuscus
 author:
   - Pian Li
